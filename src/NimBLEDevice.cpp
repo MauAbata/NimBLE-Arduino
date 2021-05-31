@@ -735,7 +735,7 @@ NimBLEAddress NimBLEDevice::getWhiteListAddress(size_t index) {
  * @brief Initialize the %BLE environment.
  * @param [in] deviceName The device name of the device.
  */
-/* STATIC */ void NimBLEDevice::init(const std::string &deviceName) {
+/* STATIC */ void NimBLEDevice::init(const std::string &deviceName, esp_bt_mode_t btMode = ESP_BT_MODE_BLE) {
     if(!initialized){
         int rc=0;
         esp_err_t errRc = ESP_OK;
@@ -763,7 +763,7 @@ NimBLEAddress NimBLEDevice::getWhiteListAddress(size_t index) {
         bt_cfg.scan_duplicate_type = m_scanFilterMode;
 
         ESP_ERROR_CHECK(esp_bt_controller_init(&bt_cfg));
-        ESP_ERROR_CHECK(esp_bt_controller_enable(ESP_BT_MODE_BLE));
+        ESP_ERROR_CHECK(esp_bt_controller_enable(btMode));
         ESP_ERROR_CHECK(esp_nimble_hci_init());
         nimble_port_init();
 
