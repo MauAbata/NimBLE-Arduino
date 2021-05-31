@@ -90,7 +90,7 @@ extern "C" void ble_store_config_init(void);
  */
 class NimBLEDevice {
 public:
-    static void             init(const std::string &deviceName);
+    static void             init(const std::string &deviceName, esp_bt_mode_t btMode = ESP_BT_MODE_BLE);
     static void             deinit(bool clearAll = false);
     static bool             getInitialized();
     static NimBLEAddress    getAddress();
